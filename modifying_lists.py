@@ -6,7 +6,6 @@ def create_list(starting, ending):
     :param ending: A number greater than the starting number
     :return: list of numbers starting with the first number and going up to and including the second number
     """
-    pass # remove this line when starting your function
 
 
 def find_odds(numbers):
