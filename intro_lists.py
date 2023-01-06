@@ -13,15 +13,15 @@ print(names[11:8:-1])
 print(names[-1:0:-1])
 print(names[11:0:-1])
 '''
-
 def swap(list_one):
     """
     Function that swaps the first and last elements of the list, regardless of length
     :param list_one: a list of at least two elements
     :return: the same list with the first and last elements swapped
     """
-    pass # make sure to remove this line before beginning work on this function
-    del list_one
+    print(list_one)
+    list_one[0], list_one[1], list_one[2] = list_one[2], list_one[1], list_one[0]
+    print(list_one)
 
 def rotate_left(list_one):
     """
@@ -42,5 +42,6 @@ def max_end(list_one):
     pass # make sure to remove this line before beginning work on this function
 
 def main():
-    list_one = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    swap(list_one)
+    swap([1, 2, 3])
+
+main()
