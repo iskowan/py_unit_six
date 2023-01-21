@@ -2,6 +2,7 @@
 Anderson Iskowitz
 Unit 6 Assignment
 1/11/23
+Looks at a list of students in and returns the percent that there was a duplicate birthday in the list
 """
 
 import random                       # importing random to get random int
@@ -27,20 +28,34 @@ def scroll_txt(text):                                                           
         sys.stdout.write(char)                                                                                              # write the character
         sys.stdout.flush()                                                                                                  # buffers the code
         time.sleep(0.03)                                                                                                    # pause for .03 seconds
-
-
+def loading_bar():
+    animation = ["[" + Color.green + "■" + Color.end + "□□□□□□□□□]", "[" + Color.green + "■■" + Color.end + "□□□□□□□□]",
+                 "[" + Color.green + "■■■" + Color.end + "□□□□□□□]", "[" + Color.green + "■■■■" + Color.end +
+                 "□□□□□□]", "[" + Color.green + "■■■■■" + Color.end + "□□□□□]", "[" + Color.green + "■■■■■■" + Color.end +
+                 "□□□□]", "[" + Color.green + "■■■■■■■" + Color.end + "□□□]", "[" + Color.green + "■■■■■■■■" + Color.end +
+                 "□□]", "[" + Color.green + "■■■■■■■■■" + Color.end + "□]", "[" + Color.green + "■■■■■■■■■■" + Color.end +
+                 "]"]                                                                                                       # defining a list called animation
+    for i in range(20):                                                                                                     # loop this 20 times
+        time.sleep(0.3)                                                                                                     # pause time
+        sys.stdout.write("\rLoading.... " + animation[i % len(animation)])                                                  # write waiting and animation
+        sys.stdout.flush()
+    time.sleep(.5)                                                                                                          # pauses code for .5 seconds
+    print("\rFinished")                                                                                                     # replace previous text with this
+    time.sleep(1)
+def dot_dot_dot():
+    scroll_txt("Calculating")  # prints text and places the next line of text next to it
+    time.sleep(.8)  # pauses the code for 1 second
+    print(".", end='')  # prints "." and places the next line of text next to it
+    time.sleep(.8)  # pauses the code for 1 second
+    print(".", end='')  # prints "." and places the next line of text next to it
+    time.sleep(.8)  # pauses the code for 1 second
+    print(".")  # prints "."
+    time.sleep(.8)
 def intro():
     '''
     :return: returns the amount of times that the user wants to run the code
     '''
-    animation = ["[■□□□□□□□□□]", "[■■□□□□□□□□]", "[■■■□□□□□□□]", "[■■■■□□□□□□]", "[■■■■■□□□□□]", "[■■■■■■□□□□]",
-                 "[■■■■■■■□□□]", "[■■■■■■■■□□]", "[■■■■■■■■■□]", "[■■■■■■■■■■]"]                                            # defining a list called animation
-    for i in range(20):                                                                                                     # loop this 20 times
-        time.sleep(0.3)                                                                                                     # pause time
-        sys.stdout.write("\rwaiting.... " + animation[i % len(animation)])                                                  # write waiting and animation
-        sys.stdout.flush()
-    time.sleep(.5)                                                                                                          # pauses code for .5 seconds
-    print("\rFinished")                                                                                                     # replace previous text with this
+    loading_bar()
     scroll_txt("Welcome! This program will calculate how many classes have two students with the same birthday\n")          # intro
     while True:
         scroll_txt("Would you like to play?:")                                                                              # asking user if they would like to play
@@ -57,7 +72,7 @@ def intro():
                     continue                                                                                                # continue code
         if play in ["n", "N", "No", "no"]:                                                                                  # if input is
             scroll_txt("Ok! Goodbye.")                                                                                      # print this
-            quit()                                                                                                          # end code
+            quit()
 
 
 def get_birthdays():
@@ -76,32 +91,34 @@ def is_duplicate(lists):
     :return: returns True or False depending on if there was a duplicate or not
     '''
     for x in range(22):                                                                                                     # loops 22 times
-        for y in range(x + 1, 23):                                                                                          # adds 1 to x and loops 23 times
+        for y in range(x + 1, 23):                                                                                          # adds 1 to x and goes till 22 in list
             if lists[x] == lists[y]:                                                                                        # compares list to itself
                 return True                                                                                                 # if there was a duplicate returns true
     return False                                                                                                            # if there was not a duplicate, return false
 
 
 def main():
-    y = intro()                                                                                                             # calls intro
+    g = intro()                                                                                                             # calls intro
+    dot_dot_dot()
     counter = 0                                                                                                             # sets counter as 0
-    for x in range(y):                                                                                                      # loops for as many times as the user said in intro
+    for x in range(g):                                                                                                      # loops for as many times as the user said in intro
         z = get_birthdays()                                                                                                 # call birthdays
         if is_duplicate(z) is True:                                                                                         # if is_duplicates returns true
             counter += 1                                                                                                    # add one to counter
         else:                                                                                                               # if is_duplicates returns anything else (False)
             counter = counter                                                                                               # counter is the same
-    percent = int((counter/y) * 100)                                                                                        # calculate percent
+    percent = int((counter/g) * 100)                                                                                        # calculate percent
     scroll_txt("The percent of duplicates found was " + Color.bold + str(percent) + "%." + Color.end)                       # print the result to the user
-    scroll_txt("\nWould you like to play the simulation again?: ")                                                          # asks user if they would like to play again
+    scroll_txt("\nWould you like to play the simulation again?:")                                                          # asks user if they would like to play again
     while True:
         t = input(" ")                                                                                                      # gets input
         if t in ["y", "Y", "Yes", "yes"]:                                                                                   # if input is one of the items in a list
             main()                                                                                                          # call main
         if t in ["n", "N", "no", "No"]:                                                                                     # if input is one of the items in the list
+            scroll_txt("Ok. See you later!")                                                                                # prints text
             quit()                                                                                                          # quit code
         else:
-            scroll_txt("Sorry I didn't get that, please type yes or no: ")                                                  # print this
+            scroll_txt("Sorry I didn't get that, please type yes or no:")                                                    # print this
             continue                                                                                                        # continue code
 
 main()                                                                                                                      # calling main function
