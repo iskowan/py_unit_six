@@ -56,7 +56,8 @@ def intro():
     :return: returns the amount of times that the user wants to run the code
     '''
     loading_bar()
-    scroll_txt("Welcome! This program will calculate how many classes have two students with the same birthday\n")          # intro
+    scroll_txt("Welcome! This program will calculate the percentage of classes with 23 students out "
+               "of any given total that two students share birthdays\n")                                                    # intro
     while True:
         scroll_txt("Would you like to play?:")                                                                              # asking user if they would like to play
         play = input(" ")                                                                                                   # getting input
